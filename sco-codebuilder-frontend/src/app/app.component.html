@@ -1,0 +1,31 @@
+<div class="container-fluid h-100 w-100">
+
+   <!-- HEADER -->
+  <div class="row header" id="header" #header>
+    <div class="col-12 d-flex">
+      <img class="app-icon" src="../../../assets/img/codebuilder-icon.png">
+      <span class="app-title">{{'Codebuilder'}}</span>
+      <span class="spacer"></span>
+      <button mat-icon-button color="accent" class="mr-2 mt-3" [disabled]="!iniWritter" (click)="onDownloadFolder()">
+        <i class="material-icons">download</i>
+      </button>
+      <button mat-icon-button color="accent" class="mr-2 mt-3" [disabled]="!iniWritter" (click)="onDownloadFolder()">
+        <i class="material-icons">download</i>
+      </button>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="w-100" id="content" #content [ngStyle]="{'height.px': contentHeight}">
+    <router-outlet></router-outlet>
+  </div>
+
+  <!-- SPINNER -->
+  <div class="spinner" *ngIf="spinnerService.getShow()">
+    <mat-progress-spinner class="spinner__spinner"
+      [color]="spinnerService.spinnerConstants.COLOR_PRIMARY"
+      [mode]="spinnerService.spinnerConstants.MODE_INDETERMINATE">
+    </mat-progress-spinner>
+  </div>
+  
+</div>

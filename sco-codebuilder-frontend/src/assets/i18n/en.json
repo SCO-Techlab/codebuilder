@@ -1,0 +1,27 @@
+{
+    "label.success": "OK",
+    "label.error": "NOK",
+    "label.no.elements": "There are no items to show",
+    "label.elements.per.page": "Elements per page",
+    "label.of": "of",
+    "label.close": "Close",
+    "label.accept": "Accept",
+    "label.cancel": "Cancel",
+    "label.yes": "Yes",
+    "label.no": "No",
+    "label.add": "Add",
+    "label.update": "Update",
+
+    "label.codebuilder.store.initWritter.success": "Work space created successfully",
+    "label.codebuilder.store.initWritter.error": "Error trying to create work space",
+    "label.codebuilder.store.destroyWritter.success": "Work space deleted successfully",
+    "label.codebuilder.store.destroyWritter.error": "Error trying to delete work space",
+    "label.codebuilder.store.writte.success": "Work space changes updated successfully",
+    "label.codebuilder.store.writte.error": "Error trying to update work space changes",
+
+    "label.download.store.downloadFolder.success": "Files download successfully",
+    "label.download.store.downloadFolder.error": "Unnable to download files",
+    "label.download.store.downloadFolder.catch": "Error trying to download files",
+
+    "label.codebuilder-example.component.example.html.button": "Greet"
+}

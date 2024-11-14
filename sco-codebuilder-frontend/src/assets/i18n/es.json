@@ -1,0 +1,27 @@
+{
+    "label.success": "OK",
+    "label.error": "NOK",
+    "label.no.elements": "No hay elementos que mostrar",
+    "label.elements.per.page": "Elementos por página",
+    "label.of": "de",
+    "label.close": "Cerrar",
+    "label.accept": "Aceptar",
+    "label.cancel": "Cancelar",
+    "label.yes": "Sí",
+    "label.no": "No",
+    "label.add": "Añadir",
+    "label.update": "Actualizar",
+
+    "label.codebuilder.store.initWritter.success": "Espacio de trabajo creado con éxito",
+    "label.codebuilder.store.initWritter.error": "Error intentando iniciar el espacio de trabajo",
+    "label.codebuilder.store.destroyWritter.success": "Espacio de trabajo eliminado con éxito",
+    "label.codebuilder.store.destroyWritter.error": "Error intentando eliminar el espacio de trabajo",
+    "label.codebuilder.store.writte.success": "Cambios en el espacio de trabajo actualizados con éxito",
+    "label.codebuilder.store.writte.error": "Error intentando escribir los cambios en el espacio de trabajo",
+
+    "label.download.store.downloadFolder.success": "Ficheros descargados con éxito",
+    "label.download.store.downloadFolder.error": "Imposible descargar los ficheros",
+    "label.download.store.downloadFolder.catch": "Error intentando descargar los ficheros",
+
+    "label.codebuilder-example.component.example.html.button": "Saludar"
+}

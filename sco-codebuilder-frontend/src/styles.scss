@@ -1,0 +1,47 @@
+*, *:before, *:after { 
+    box-sizing: border-box; 
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+    -ms-box-sizing: border-box;
+}
+
+html, body { 
+    height: 100%; 
+}
+
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+}
+
+/* Toast Classess */
+.success-snackbar {
+    background-color: #69f0ae!important;
+    color: #fff;
+}
+
+.error-snackbar {
+    background-color: #f44336!important;
+    color: #fff;
+}
+
+.warning-snackbar {
+    background-color: #ffc107!important;
+    color: #fff;
+}
+
+.info-snackbar {
+    background-color: #17a2b8 !important;
+    color: #fff;
+}
+
+/* ScrollBar */
+::-webkit-scrollbar {
+    background: transparent !important;
+    height: 5px !important;
+    width: 5px !important;
+}
+ 
+ ::-webkit-scrollbar-thumb {
+    background: lightgray !important;
+}

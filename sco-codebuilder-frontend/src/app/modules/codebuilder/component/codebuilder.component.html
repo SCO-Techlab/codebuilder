@@ -1,0 +1,122 @@
+<!-- CODE -->
+<div class="row code" [hidden]="appType != resolutionService.resolutionConstants.WEB">
+
+  <!-- Container 1 -->
+  <div class="p-0 d-flex container">
+    <div class="vertical-spacer"></div>
+    <div class="code-container">
+      <div class="code-container__header d-flex">
+        <div class="code-container__header--title">
+          <p>{{title_content1}}</p>
+        </div>
+        <div class="code-container__header--options">
+        </div>
+      </div>      
+      <div class="code-container__content">
+        <div class="code-container__content--editor" id="htmlEditorWeb" #htmlEditorWeb></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Container 2 -->
+  <div class="p-0 d-flex container">
+    <div class="vertical-spacer cursor-spacer"></div>
+    <div class="code-container">
+      <div class="code-container__header d-flex">
+        <div class="code-container__header--title">
+          <p>{{title_content2}}</p>
+        </div>
+        <div class="code-container__header--options">
+        </div>
+      </div>    
+      <div class="code-container__content">
+        <div class="code-container__content--editor" id="cssEditorWeb" #cssEditorWeb></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Container 3 -->
+  <div class="p-0 d-flex container-last">
+    <div class="vertical-spacer cursor-spacer"></div>
+    <div class="code-container">
+      <div class="code-container__header d-flex">
+        <div class="code-container__header--title">
+          <p>{{title_content3}}</p>
+        </div>
+        <div class="code-container__header--options">
+        </div>
+      </div>      
+      <div class="code-container__content">
+        <div class="code-container__content--editor" id="javascriptEditorWeb" #javascriptEditorWeb></div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+<!-- CODE TABLET / MOBILE -->
+<div class="row tabs"  [hidden]="appType == resolutionService.resolutionConstants.WEB">
+
+  <!-- TABS -->
+  <div class="tabs__types" >
+    <div class="tabs__types--option" [ngClass]="{'tabs__types--option--selected': typeSelected == title_content1}" (click)="changeMode(title_content1)">
+      <p class="tabs__types--option--text">{{title_content1}}</p>
+    </div>
+    <div class="tabs__types--option" [ngClass]="{'tabs__types--option--selected': typeSelected == title_content2}" (click)="changeMode(title_content2)">
+      <p class="tabs__types--option--text">{{title_content2}}</p>
+    </div>
+    <div class="tabs__types--option" [ngClass]="{'tabs__types--option--selected': typeSelected == title_content3}" (click)="changeMode(title_content3)">
+      <p class="tabs__types--option--text">{{title_content3}}</p>
+    </div>
+  </div>
+
+  <!-- TABS CONTAINERS -->
+  <div class="tabs__container" [hidden]="typeSelected != title_content1">
+    <div class="tabs__container--editor" id="htmlEditorTabletMobile" #htmlEditorTabletMobile></div>
+  </div>
+  <div class="tabs__container" [hidden]="typeSelected != title_content2">
+    <div class="tabs__container--editor" id="cssEditorTabletMobile" #cssEditorTabletMobile></div>
+  </div>
+  <div class="tabs__container" [hidden]="typeSelected != title_content3">
+    <div class="tabs__container--editor" id="javascriptEditorTabletMobile" #javascriptEditorTabletMobile></div>
+  </div>
+</div>
+
+<!-- RESULT DISPLAY -->
+<div class="row result-display">
+  <div class="horizontal-spacer cursor-spacer"></div>
+    <iframe [hidden]="showLogs" class="result-container" 
+      [src]="safeSrc" 
+      appLoadIframe 
+      *ngIf="safeSrc">
+    </iframe>
+    <div [hidden]="!showLogs" class="console-container" *ngIf="consoleLogs && consoleLogs.length > 0">
+      <div *ngFor="let log of consoleLogs; let i = index;" 
+        style="border-bottom: 1px solid rgba(211, 211, 211, 0.3); width: 100%; height: 20px; font-size: 14px; padding-left: 5px;"
+      >
+        <p>
+          <span [ngStyle]="{'color': log.color}">{{'>  [' + log.type + ']  '}}</span>
+          <span>{{log.message}}</span>
+        </p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="row footer">
+  <div class="col-6" style="text-align: left !important;">
+    <button mat-icon-button color="accent" class="mr-2" (click)="changeViewMode()">
+      <i class="material-icons" *ngIf="appType != 'web'">computer</i>
+      <i class="material-icons" *ngIf="appType == 'web'">tablet_android</i>
+    </button>
+  </div>
+  <div class="col-6">
+    <button mat-icon-button color="accent" class="mr-2" (click)="showLogs = !showLogs;">
+      <i class="material-icons" *ngIf="showLogs">web</i>
+      <i class="material-icons" *ngIf="!showLogs">terminal</i>
+    </button>
+    <button mat-icon-button color="accent" (click)="onClickRunBtn()">
+      <i class="material-icons">play_arrow</i>
+    </button>
+  </div>
+</div>
