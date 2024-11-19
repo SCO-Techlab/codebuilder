@@ -1,4 +1,4 @@
-import { CRON_CONSTANTS } from './../../constants/cron.constants';
+import { CRON_CONSTANTS } from '../../constants/cron.constants';
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from '@nestjs/config';
 import { CronJob } from "cron";
