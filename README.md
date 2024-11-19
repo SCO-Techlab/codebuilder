@@ -16,4 +16,4 @@ Con Codebuilder puedes crear y compartir proyectos de HTML, CSS y JavaScript de 
 - Consola web integrada: Codebuilder te ofrece una vista de la consola a tiempo real.
 
 # Ejemplo
-- http://codebuilder.sco-techlab.es/codebuilder-example
+- https://codebuilder.sco-techlab.es/codebuilder-example
