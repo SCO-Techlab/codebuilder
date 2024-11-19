@@ -12,16 +12,16 @@ export class WebsocketGateway implements OnGatewayInit {
 
   @WebSocketServer() server: Server;
 
-  async afterInit(server: Server, options?: ServerOptions) {
+  async afterInit(server: Server, options?: ServerOptions): Promise<void> {
     console.log(`[WebsocketGateway] Websocket started on port: ${this.options.port}`);
     return;
   }
 
-  handleDisconnect(client: Socket) {
+  async handleDisconnect(client: Socket): Promise<void> {
     console.log('[WebsocketGateway] Client disconnected: ', client['handshake'].headers.origin);
   }
 
-  async handleConnection(client: Socket) {
+  async handleConnection(client: Socket): Promise<void> {
     console.log('[WebsocketGateway] Client connected: ', client['handshake'].headers.origin);
   }
 
@@ -41,14 +41,12 @@ export class WebsocketGateway implements OnGatewayInit {
   }
 
   private sendWebsocketNotification(wsEvent: string): boolean {
-    let notificationSended: boolean = false;
     try {
       this.server.emit(wsEvent, true);
-      notificationSended = true;
+      return true;
     } catch (err) {
       console.error(`[sendWebsocketNotification] Error: ${JSON.stringify(err)}`);
-    } finally {
-      return notificationSended;
+      return false;
     }
   }
 
