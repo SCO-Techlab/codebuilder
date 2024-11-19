@@ -1,5 +1,5 @@
 import { DynamicModule, Module, ModuleMetadata, Provider, Type } from "@nestjs/common";
-import { WebsocketConfig } from "./config/websocket-config";
+import { WebsocketConfig } from "./websocket-config";
 import { WebsocketGateway } from "./websocket.gateway";
 
 interface WebsocketConfigFactory {

@@ -2,11 +2,12 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { LoggerService } from './modules/logger/logger.service';
 import { HttpException, HttpStatus, ValidationError, ValidationPipe } from '@nestjs/common';
-import { WebsocketAdapter } from './modules/websocket/adapter/websocket-adapter';
+import { WebsocketAdapter } from './modules/websocket/websocket-adapter';
 import { ConfigService } from '@nestjs/config';
 import * as fs from 'fs';
 
 async function bootstrap() {
+
   const basepath: string = `${process.env.SSL_PATH}/${process.env.HOST_APP}`;
 
   let cert: any = undefined;
@@ -41,22 +42,13 @@ async function bootstrap() {
     }),
   );
 
-  const envOrigin: string = configService.get('websocket.origin');
-  let origin: string[] = [];
-  if (envOrigin && envOrigin.length > 0) {
-    origin = [envOrigin];
-
-    if (envOrigin.includes(',')) {
-      origin = envOrigin.split(',');
-    }
-  }
-  
+  const origin: string[] = formatOrigin(configService.get('app.origin')) || [];
   app.enableCors({
     origin: origin && origin.length > 0 ? origin : '*',
     credentials: true,
   });
 
-  app.useWebSocketAdapter(new WebsocketAdapter(app, configService));
+  app.useWebSocketAdapter(new WebsocketAdapter(app, origin));
   
   const port: number = configService.get('app.port') || 3000;
   const host: string = configService.get('app.host') || 'localhost';
@@ -65,3 +57,11 @@ async function bootstrap() {
   console.log(`[bootstrap] App started in '${httpsEnabled ? 'https' : 'http'}://${host}:${port}'`);
 }
 bootstrap();
+
+function formatOrigin(envOrigin: string): string[] {
+  if (!envOrigin || envOrigin && envOrigin.length == 0) return ["*"];
+  const origin: string[] = envOrigin.includes(',')
+    ? envOrigin.split(',')
+    : [envOrigin];
+  return origin;
+}

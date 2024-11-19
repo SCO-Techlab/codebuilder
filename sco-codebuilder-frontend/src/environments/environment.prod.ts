@@ -3,7 +3,7 @@ export const environment = {
   production: true,
   host: 'codebuilder.sco-techlab.es',
   apiUrl: `http://codebuilder.sco-techlab.es:3200/api/v1`,
-  socketUrl: `ws://codebuilder.sco-techlab.es:3201`,
+  socketUrl: `ws://codebuilder.sco-techlab.es:3200`,
   httpsEnabled: true,
   xamppPort: 3200,
 };

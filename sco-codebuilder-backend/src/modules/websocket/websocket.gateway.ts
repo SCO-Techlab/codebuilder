@@ -2,8 +2,8 @@ import { Inject, Injectable } from '@nestjs/common';
 import {OnGatewayInit, WebSocketGateway, WebSocketServer } from '@nestjs/websockets';
 import { Server, ServerOptions } from 'socket.io';
 import { Socket } from 'dgram';
-import { WebsocketConfig } from './config/websocket-config';
-import { websocketEvents } from './constants/websocket.events';
+import { WebsocketConfig } from './websocket-config';
+import { websocketEvents } from './websocket.events';
 
 @Injectable()
 @WebSocketGateway()

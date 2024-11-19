@@ -6,7 +6,7 @@ import { httpErrorMessages } from 'src/constants/http-error-messages.constants';
 import { Response } from 'express';
 import { WritterConstants } from './constants/writter.constants';
 import { WebsocketGateway } from '../websocket/websocket.gateway';
-import { websocketEvents } from '../websocket/constants/websocket.events';
+import { websocketEvents } from '../websocket/websocket.events';
 
 @Controller(`api/v1/writter`)
 export class WritterController {
