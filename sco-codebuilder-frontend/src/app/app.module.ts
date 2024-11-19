@@ -1,6 +1,5 @@
 import { SharedModule } from './shared/shared.module';
 import { TranslateService } from './shared/translate/translate.service';
-import { ConfigService } from './shared/config/config.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -23,10 +22,6 @@ import { NgxsStoragePluginModule } from "@ngxs/storage-plugin";
 import { CodebuilderModule } from './modules/codebuilder/codebuilder.module';
 import { DownloadModule } from './modules/download/download.module';
 import { CodebuilderExampleModule } from './modules/codebuilder-example/codebuilder-example.module';
-
-export function configFactory(provider: ConfigService) {
-  return () => provider.getDataFromJson('assets/config/data.json');
-}
 
 export function translateFactory(provider: TranslateService) {
   return () => provider.getData('assets/i18n/');
@@ -60,12 +55,6 @@ export function translateFactory(provider: TranslateService) {
   ],
   providers: [
     WebSocketService,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: configFactory,
-      deps: [ConfigService],
-      multi: true,
-    },
     {
       provide: APP_INITIALIZER,
       useFactory: translateFactory,

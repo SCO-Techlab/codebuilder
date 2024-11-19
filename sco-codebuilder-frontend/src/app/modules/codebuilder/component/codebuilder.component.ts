@@ -8,7 +8,6 @@ import { CreateWritterSpace, DesotryWritterSpace, WritteOnSpaceFiles } from '../
 import { CodebuilderState } from '../store/codebuilder.state';
 import { ResolutionService } from 'src/app/shared/resolution/resolution.service';
 import { TranslateService } from 'src/app/shared/translate/translate.service';
-import { ConfigService } from 'src/app/shared/config/config.service';
 import { ToastService } from 'src/app/shared/toast/toast.service';
 import { SpinnerService } from 'src/app/shared/spinner/spinner.service';
 import { environment } from 'src/environments/environment';
@@ -69,7 +68,6 @@ export class CodebuilderComponent implements OnInit, AfterViewInit, OnDestroy {
     private readonly spinnerService: SpinnerService,
     private readonly toastService: ToastService,
     private readonly cacheService: CacheService,
-    public readonly configService: ConfigService,
     public readonly translateService: TranslateService,
     public readonly resolutionService: ResolutionService,
   ) {  

@@ -1,5 +1,4 @@
 import { AfterViewInit, Component, ElementRef, HostListener, ViewChild } from "@angular/core";
-import { ConfigService } from "./shared/config/config.service";
 import { WebSocketService } from "./websocket/websocket.service";
 import { SpinnerService } from "./shared/spinner/spinner.service";
 import { ResolutionService } from './shared/resolution/resolution.service';
@@ -18,8 +17,6 @@ import { Download } from "./modules/download/model/download";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements AfterViewInit {
-  
-  public title: string;
 
   @ViewChild('header') header: ElementRef;
   @ViewChild('content') content: ElementRef;
@@ -30,15 +27,11 @@ export class AppComponent implements AfterViewInit {
 
   constructor(
     private readonly store: Store,
-    private readonly configService: ConfigService,
     private readonly websocketsService: WebSocketService,
     private readonly toastService: ToastService,
     public readonly spinnerService: SpinnerService,
     public readonly resolutionService: ResolutionService,
   ) {
-    if (this.configService.getData(this.configService.configConstants.TITLE)) {
-      this.title = this.configService.getData(this.configService.configConstants.TITLE) || 'sco-codebuilder';
-    }
 
     this.websocketsService.connect();
 
@@ -56,32 +49,18 @@ export class AppComponent implements AfterViewInit {
     this.calculateSizes($event.target.innerHeight);
   }
 
-  private calculateSizes(height: number = undefined): void {
-    if (!height) {
-      height = window.innerHeight;
-    }
-
-    this.contentHeight = height - this.header.nativeElement.offsetHeight;
-  }
-
   onDownloadFolder() {
     this.store.dispatch(new DownloadFolder({ folder: this.iniWritter.token })).subscribe({
       next: () => {
-        const success: boolean = this.store.selectSnapshot(DownloadState.success);
-        if (!success) {
-          this.toastService.addErrorMessage(this.store.selectSnapshot(DownloadState.errorMsg));
-          return;
-        }
+        if (!this.store.selectSnapshot(DownloadState.success)) 
+          return this.toastService.addErrorMessage(this.store.selectSnapshot(DownloadState.errorMsg));
 
         const download: Download = this.store.selectSnapshot(DownloadState.download);
-        if (!download) {
-          this.toastService.addErrorMessage(this.store.selectSnapshot(DownloadState.errorMsg));
-        }
+        if (!download) return this.toastService.addErrorMessage(this.store.selectSnapshot(DownloadState.errorMsg));
 
         try {
-          const src = `data:text/csv;base64,${download.base64}`;
           const a = document.createElement('a');
-          a.href = src
+          a.href = `data:text/csv;base64,${download.base64}`
           a.download = download.fileName
           a.click();
           this.toastService.addSuccessMessage(this.store.selectSnapshot(DownloadState.successMsg));
@@ -93,5 +72,10 @@ export class AppComponent implements AfterViewInit {
         this.toastService.addErrorMessage(this.store.selectSnapshot(DownloadState.errorMsg));
       }
     })
+  }
+
+  private calculateSizes(height: number = undefined): void {
+    if (!height) height = window.innerHeight;
+    this.contentHeight = height - this.header.nativeElement.offsetHeight;
   }
 }
