@@ -1,12 +1,12 @@
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { APP_CONFIGURATION } from './app.configuration';
-import { LoggerModule } from './modules/logger/logger.module';
 import { WebsocketModule } from './modules/websocket/websocket.module';
 import { WebsocketConfig } from './modules/websocket/websocket-config';
 import { PublicMiddleware } from './middlewares/public.middleware';
 import { WritterModule } from './modules/writter/writter.module';
 import { DownloadModule } from './modules/download/download.module';
+import { LoggerService } from './app.logger.service';
 
 @Module({
   imports: [
@@ -25,10 +25,12 @@ import { DownloadModule } from './modules/download/download.module';
       },
       inject: [ConfigService],
     }),
-    LoggerModule,
     WritterModule,
     DownloadModule,
   ],
+  providers: [
+    LoggerService,
+  ]
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer): void {
