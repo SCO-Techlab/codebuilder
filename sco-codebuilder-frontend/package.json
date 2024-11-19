@@ -1,5 +1,8 @@
 {
   "name": "sco-codebuilder",
+  "author": {
+    "name": "Santiago Comeras Oteo (SCO Techlab) <sco.techlab@gmail.com>"
+  },
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",

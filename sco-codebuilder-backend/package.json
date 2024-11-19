@@ -2,7 +2,9 @@
   "name": "sco-codebuilder",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": {
+    "name": "Santiago Comeras Oteo (SCO Techlab) <sco.techlab@gmail.com>"
+  },
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
